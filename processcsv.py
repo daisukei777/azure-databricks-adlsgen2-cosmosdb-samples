@@ -31,7 +31,7 @@ dbutils.widgets.removeAll()
 # COMMAND ----------
 
 # Input parameters to select input folder path and cosmos db.
-dbutils.widgets.text("inputfolderpath","/typhoon/20190124010101")
+dbutils.widgets.text("inputfolderpath","/input/")
 dbutils.widgets.text("cosmosdb_database", "msdbid")
 dbutils.widgets.text("cosmosdb_collection", "mscolid")
 
@@ -119,21 +119,9 @@ def converToSparkDF(pdf):
   # Define the schema to apply to the data...
   schema = StructType([
     StructField("Index", StringType()),
-    StructField("ANNOUNCE_DATETIME", StringType()),
-    StructField("REGION_CODE", StringType()),
-    StructField("FORECAST_HOUR", StringType()),
-    StructField("IMAGE_XPIXCEL", StringType()),
-    StructField("IMAGE_YPIXCEL", StringType()),
-    StructField("IMAGE_KIND", StringType()),
-    StructField("IMAGE_FILENAME", StringType()),
-    StructField("FORECAST_DATE", StringType()),
-    StructField("INFO_TITLE", StringType()),
-    StructField("SUB_TITLE", StringType()),
-    StructField("REGION_NAME", StringType()),
-    StructField("FORECAST_TITLE", StringType()),
-    StructField("TYPHOON_AMOUNT", StringType()),
-    StructField("TYPHOON_ISSUE", StringType()),
-    StructField("CREATE_AT", StringType())
+    StructField("UPDATE_DATETIME", StringType()),
+    StructField("REGION", StringType()),
+    StructField("COUNTRY", StringType())
   ])
   
   df = spark.createDataFrame(pdf, schema)
